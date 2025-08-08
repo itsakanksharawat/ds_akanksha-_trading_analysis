@@ -1,0 +1,56 @@
+from google.colab import drive
+import os
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from IPython.display import display
+
+drive.mount('/content/drive', force_remount=True)
+sns.set_theme(style="whitegrid")
+
+YOUR_NAME = "akanksha"
+BASE = f"/content/drive/My Drive/ds_{YOUR_NAME}"
+CSV_DIR, OUT_DIR = f"{BASE}/csv_files", f"{BASE}/outputs"
+os.makedirs(OUT_DIR, exist_ok=True)
+
+merged_path = f"{CSV_DIR}/merged_trader_sentiment.csv"
+df = pd.read_csv(merged_path, low_memory=False)
+
+if 'date' in df.columns and not pd.api.types.is_datetime64_any_dtype(df['date']):
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+
+for col in ['closed_pnl', 'size_usd', 'fee']:
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+pnl_by_sentiment = df.dropna(subset=['classification', 'closed_pnl']).groupby('classification')['closed_pnl'].mean().reset_index()
+
+plt.figure(figsize=(8, 5))
+sns.barplot(data=pnl_by_sentiment, x='classification', y='closed_pnl', palette="coolwarm")
+plt.title("Average PnL by Market Sentiment")
+plt.xlabel("Market Sentiment")
+plt.ylabel("Average Closed PnL")
+plt.tight_layout()
+plot_path = f"{OUT_DIR}/pnl_by_sentiment.png"
+plt.savefig(plot_path)
+plt.show()
+
+win_loss_df = df.dropna(subset=['classification', 'closed_pnl']).copy()
+win_loss_df["is_win"] = (win_loss_df['closed_pnl'] > 0).astype(int)
+
+perf_table = win_loss_df.groupby('classification').agg(
+    trades=("is_win", "count"),
+    win_rate=("is_win", "mean"),
+    avg_pnl=('closed_pnl', 'mean'),
+    avg_win=('closed_pnl', lambda x: x[x > 0].mean()),
+    avg_loss=('closed_pnl', lambda x: x[x < 0].mean()),
+).round(4)
+
+display(perf_table)
+table_path = f"{OUT_DIR}/win_loss_by_sentiment.csv"
+perf_table.to_csv(table_path)
+
+print("✅ Analysis complete.")
+print(f"💾 Plot saved to: {plot_path}")
+print(f"💾 Table saved to: {table_path}")
