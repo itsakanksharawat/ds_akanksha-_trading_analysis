@@ -1,0 +1,21 @@
+Data Science Analysis Report: Trader Performance vs. Market Sentiment
+Author: Akanksha Rawat
+Date: August 08, 2025
+
+1. Objective 
+My objective was to quantify the impact of market sentiment, as defined by the Fear & Greed Index, on the trading performance metrics found in the  historical data set(provided). The goal was to identify statistically significant patterns
+
+2. Data Processing Pipeline
+The data ingestion and preparation pipeline was executed in notebook_1. The raw CSVs were loaded into pandas DataFrames. The initial data sanitization step involved standardizing column headers to snake_case and performing type casting. Crucially, I converted the timestamp_ist string into a normalized datetime object to serve as a join key.
+The core operation was a pd.merge() left-join on this datetime key. This mapped the daily sentiment classification to each individual trade record, creating a unified, analysis-ready DataFrame that I saved back to a CSV
+
+3. Exploratory Data Analysis
+In notebook_2, I performed an Exploratory Data Analysis (EDA). The primary analysis involved using groupby('classification') on the DataFrame, followed by an aggregation (.agg()) to compute the mean closed_pnl and win_rate.
+•	Profitability Analysis: The bar plot, generated with seaborn, visualizes the result of this aggregation. It clearly shows that the mean PnL is highest in the 'Fear' and 'Extreme Fear' cohorts, indicating that profitability was sentiment-dependent.
+•	Risk Analysis: The summary table further quantifies this by revealing an asymmetric risk profile. While the win_rate was marginally higher during 'Greed' periods, the average loss was disproportionately larger, leading to a lower overall expectancy per trade
+
+
+ 4. Actionable Insights
+
+The empirical evidence from this analysis supports the hypothesis that a contrarian strategy yielded superior risk-adjusted returns in this dataset. The primary actionable signal is that periods of high market fear, as measured by the index, correlate strongly with higher trader profitability.
+
