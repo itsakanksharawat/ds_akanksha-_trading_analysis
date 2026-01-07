@@ -51,6 +51,6 @@ display(perf_table)
 table_path = f"{OUT_DIR}/win_loss_by_sentiment.csv"
 perf_table.to_csv(table_path)
 
-print("✅ Analysis complete.")
-print(f"💾 Plot saved to: {plot_path}")
-print(f"💾 Table saved to: {table_path}")
+print(" Analysis complete.")
+print(f" Plot saved to: {plot_path}")
+print(f"Table saved to: {table_path}")
