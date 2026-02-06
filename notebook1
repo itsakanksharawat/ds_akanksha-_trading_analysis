@@ -9,7 +9,7 @@ from IPython.display import display
 drive.mount('/content/drive', force_remount=True)
 sns.set_theme(style="whitegrid")
 
-YOUR_NAME = "akanksha"
+YOUR_NAME = "Akanksha"
 BASE = f"/content/drive/My Drive/ds_{YOUR_NAME}"
 CSV_DIR, OUT_DIR = f"{BASE}/csv_files", f"{BASE}/outputs"
 os.makedirs(OUT_DIR, exist_ok=True)
