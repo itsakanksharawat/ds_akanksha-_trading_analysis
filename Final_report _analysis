@@ -15,7 +15,7 @@ In notebook_2, I performed an Exploratory Data Analysis (EDA). The primary analy
 •	Risk Analysis: The summary table further quantifies this by revealing an asymmetric risk profile. While the win_rate was marginally higher during 'Greed' periods, the average loss was disproportionately larger, leading to a lower overall expectancy per trade
 
 
- 4. Actionable Insights
+ 4. Actionable Insights.
 
 The empirical evidence from this analysis supports the hypothesis that a contrarian strategy yielded superior risk-adjusted returns in this dataset. The primary actionable signal is that periods of high market fear, as measured by the index, correlate strongly with higher trader profitability.
 
