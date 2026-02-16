@@ -1,8 +1,8 @@
 Data Science Analysis Report: Trader Performance vs. Market Sentiment
 Author: Akanksha Rawat
-Date: August 08, 2025
+Date: August 08,2025
 
-1. Objective 
+1. Objective :
 My objective was to quantify the impact of market sentiment, as defined by the Fear & Greed Index, on the trading performance metrics found in the  historical data set(provided). The goal was to identify statistically significant patterns
 
 2. Data Processing Pipeline
