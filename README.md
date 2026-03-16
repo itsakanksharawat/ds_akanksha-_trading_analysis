@@ -1,6 +1,6 @@
 # Data Science Assignment: Trading Performance vs. Market Sentiment
 
-## Project by: Akanksha
+## Project by: Akanksha Rawat
 
 ### Project Workflow
 This repository contains the complete analysis for the data science hiring task. The project is organized to be run in the following order:
