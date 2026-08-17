@@ -23,6 +23,7 @@ To run the analysis notebooks, please follow these two steps:
     *   [**Click here to download historical_data**](https://drive.google.com/file/d/1IAfLZwu6rJzyWKgBToqwSmmVYU6VbjVs/view?usp=sharing)
 
 2.  **Place the File in the `csv_files` Folder:**
+3.  
     *   After downloading, place the `historical_data` file inside the `csv_files` folder within this project.
 
 Once the file is in the correct location, the notebooks can be run sequentially without any errors. All other required files, including `fear_greed_index.csv`, are already included in the repository.
